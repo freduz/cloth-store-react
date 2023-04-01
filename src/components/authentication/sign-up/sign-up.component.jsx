@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { createAuthUserWithEmailAndPassword } from "../../utils/firebase.util";
-import { createUser } from "../../services/user-service";
-import FormInput from '../form-input/form-input.component'
-import Button from "../button/button.component";
+
+import "./sign-up.styles.scss";
+import { createAuthUserWithEmailAndPassword } from "../../../utils/firebase.util";
+import { createUser } from "../../../services/user-service";
+import FormInput from '../../form-input/form-input.component'
+import Button from "../../button/button.component";
+import { signInWithGooglePopup } from "../../../utils/firebase.util";
 
 const SignUp = () => {
 
@@ -26,7 +29,7 @@ const SignUp = () => {
 
     const submitForm = async (event) => {
         event.preventDefault();
-       if(formFields.password != formFields.confirmPassword) {
+       if(formFields.password !== formFields.confirmPassword) {
         alert("Passwords do not match")
         return;
        }
@@ -36,7 +39,6 @@ const SignUp = () => {
           await createUser(user,{displayName:formFields.displayName})
        }
        catch(err){
-        console.log(err.code);
         if(err.code === 'auth/email-already-in-use'){
             alert("Email already exists")
         }
@@ -48,9 +50,17 @@ const SignUp = () => {
     }
 
 
+    const signInWithPopup = async () => {
+        const {user} = await signInWithGooglePopup();
+        await createUser(user)
+    }
+
+
     return(
         <>
-        <h1>Sign up with email and password</h1>
+       <div className="sign-up-container">
+       <h2>Don't have an account</h2>
+        <span>Sign up with email and password</span>
         <form onSubmit={submitForm}>
         <FormInput label="Display name" name="displayName" value={displayName} onChange={handleState}/>
         <FormInput label="Email" name="email" value={email} onChange={handleState}/>
@@ -58,10 +68,9 @@ const SignUp = () => {
         <FormInput label="Confirm password" name="confirmPassword" value={confirmPassword} onChange={handleState}/>
           <div>
             <Button type="submit">Sign Up</Button>
-            
           </div>
-
         </form>
+       </div>
         </>
     )
 }
