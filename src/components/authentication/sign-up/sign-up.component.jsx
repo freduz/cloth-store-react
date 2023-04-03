@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useContext } from "react";
 
 import "./sign-up.styles.scss";
 import { createAuthUserWithEmailAndPassword } from "../../../utils/firebase.util";
 import { createUser } from "../../../services/user-service";
 import FormInput from '../../form-input/form-input.component'
 import Button from "../../button/button.component";
-import { signInWithGooglePopup } from "../../../utils/firebase.util";
+import { UserContext } from "../../../context/user.context";
 
 const SignUp = () => {
 
@@ -18,6 +19,7 @@ const SignUp = () => {
 
     const [formFields,setFormFields] = useState(defaultFormFields);
     const {displayName,email,password,confirmPassword} = formFields;
+    const {setCurrentUser} = useContext(UserContext);
 
     const handleState = (event) => {
            const {name,value} = event.target;
@@ -37,6 +39,8 @@ const SignUp = () => {
        try{
           const {user} = await createAuthUserWithEmailAndPassword(formFields.email,formFields.password);
           await createUser(user,{displayName:formFields.displayName})
+          setCurrentUser(user)
+
        }
        catch(err){
         if(err.code === 'auth/email-already-in-use'){
@@ -50,10 +54,7 @@ const SignUp = () => {
     }
 
 
-    const signInWithPopup = async () => {
-        const {user} = await signInWithGooglePopup();
-        await createUser(user)
-    }
+   
 
 
     return(
