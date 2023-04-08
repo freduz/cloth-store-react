@@ -2,10 +2,8 @@ import ProductList from "../../components/product/product-list/product-list.comp
 import './shop.styles.scss';
 
 const Shop = () => {
-    return (
-        <div className="products-container">
+    return ( 
          <ProductList/>
-        </div>
     );
 }
 
