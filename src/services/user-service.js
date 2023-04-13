@@ -14,7 +14,6 @@ export const createUser = async(userDetails,additionalInfo={}) => {
            })
         }
         catch(err){
-            console.log(err)
         }
     }
 
