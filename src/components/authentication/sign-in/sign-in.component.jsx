@@ -7,6 +7,7 @@ import FormInput from "../../form-input/form-input.component"
 import {UserContext} from '../../../context/user.context'
 import { signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../../utils/firebase.util"
 import { createUser } from "../../../services/user-service";
+import {BUTTON_TYPES} from '../../button/button.component'
 
 const SignIn = () => {
 
@@ -52,9 +53,8 @@ const SignIn = () => {
        <FormInput label="Password" name="password" value={password} onChange={handleState}/>
          <div className="buttons-container">
            <Button type="submit">Sign In</Button>
-           <Button buttonType="google" onClick={signInWithPopup}>Google Sign in</Button>      
+           <Button buttonType={BUTTON_TYPES.google} onClick={signInWithPopup}>Google Sign in</Button>      
          </div>
-
        </form>
    </div>
    </>
