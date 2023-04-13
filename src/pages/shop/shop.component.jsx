@@ -1,9 +1,9 @@
-import ProductList from "../../components/product/product-list/product-list.component";
+import { Outlet } from "react-router-dom";
 import './shop.styles.scss';
 
 const Shop = () => {
     return ( 
-         <ProductList/>
+        <Outlet/>
     );
 }
 
