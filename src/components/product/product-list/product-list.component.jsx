@@ -15,7 +15,7 @@ const ProductList = () => {
                Object.keys(products).map((title) =>{
                 const productsData = products[title];
                 return (
-                    <CategoryPreview title={title} products={productsData}/>
+                    <CategoryPreview key={title} title={title} products={productsData}/>
                 )
                })
             }
