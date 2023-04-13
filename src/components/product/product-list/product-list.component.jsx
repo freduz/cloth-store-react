@@ -7,8 +7,6 @@ import './product-list.styles.scss'
 const ProductList = () => {
 
     const {products} = GetProductContext();
-    console.log(products);
-
     return(
         <div>
             {

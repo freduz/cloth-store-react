@@ -32,7 +32,6 @@ const filterAndAddCartItems = (cartItems,product) => {
 
 
 const clearItemFromCart = (cartItems,product) => {
-    console.log("dfgdfgdg");
     return cartItems.filter(cartItem => cartItem.id !== product.id)
 }
 

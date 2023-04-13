@@ -7,11 +7,6 @@ import { UserContext } from "../../context/user.context";
 import "./authentication.styles.scss";
 
 const Authentication = () => {
-
-    const {currentUser} = useContext(UserContext);
-
-    console.log("hitt")
-
     return(
         <div className="auth-container">
         <SignIn/>
