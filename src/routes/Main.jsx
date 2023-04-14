@@ -1,14 +1,14 @@
-import { Route, Routes } from "react-router-dom";
-import RootLayout from "../layouts/root";
-import Home from "../components/home/home.component";
-import Authentication from "../components/authentication/authentication.component";
-import Shop from "../pages/shop/shop.component";
-import CheckOut from "../components/checkout/checkout.component";
+import { Route, Routes } from 'react-router-dom'
+import RootLayout from '../layouts/root'
+import Home from '../components/home/home.component'
+import Authentication from '../components/authentication/authentication.component'
+import Shop from '../pages/shop/shop.component'
+import CheckOut from '../components/checkout/checkout.component'
 import ProductList from '../components/product/product-list/product-list.component'
-import ProductCategory from "../components/product-category/product-category.component";
+import ProductCategory from '../components/product-category/product-category.component'
 
 const MainRoute = () => {
-    return(
+  return (
         <>
         <Routes>
             <Route element={<RootLayout/>}>
@@ -23,7 +23,7 @@ const MainRoute = () => {
             </Route>
         </Routes>
         </>
-    )
+  )
 }
 
-export default MainRoute;
+export default MainRoute

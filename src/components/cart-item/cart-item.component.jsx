@@ -1,7 +1,7 @@
-import './cart-item.styles.scss';
+import './cart-item.styles.scss'
 
 const CartItem = ({ cartItem }) => {
-  const { imageUrl, price, name, quantity } = cartItem;
+  const { imageUrl, price, name, quantity } = cartItem
 
   return (
     <div className='cart-item-container'>
@@ -13,7 +13,7 @@ const CartItem = ({ cartItem }) => {
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem

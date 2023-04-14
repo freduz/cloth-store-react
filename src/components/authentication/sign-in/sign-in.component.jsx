@@ -1,49 +1,45 @@
-import { useState } from "react"
-import { useContext } from "react";
+import { useState, useContext } from 'react'
 
-import './sign-in.styles.scss';
-import Button from "../../button/button.component"
-import FormInput from "../../form-input/form-input.component"
-import {UserContext} from '../../../context/user.context'
-import { signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from "../../../utils/firebase.util"
-import { createUser } from "../../../services/user-service";
-import {BUTTON_TYPES} from '../../button/button.component'
+import './sign-in.styles.scss'
+import Button, { BUTTON_TYPES } from '../../button/button.component'
+import FormInput from '../../form-input/form-input.component'
+import { UserContext } from '../../../context/user.context'
+import { signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from '../../../utils/firebase.util'
+import { createUser } from '../../../services/user-service'
 
 const SignIn = () => {
+  const { setCurrentUser } = useContext(UserContext)
+  const defaultFormFields = {
+    email: '',
+    password: ''
+  }
 
-    const {setCurrentUser} = useContext(UserContext);
-    const defaultFormFields = {
-        email:'',
-        password:''
+  const [formFields, setFormFields] = useState(defaultFormFields)
+
+  const { email, password } = formFields
+
+  const handleState = (event) => {
+    const { name, value } = event.target
+    setFormFields({
+      ...formFields,
+      [name]: value
+    })
+  }
+
+  const submitForm = async (event) => {
+    event.preventDefault()
+    try {
+      const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+    } catch (err) {
+
     }
+  }
 
-    const [formFields,setFormFields] = useState(defaultFormFields);
+  const signInWithPopup = async () => {
+    const { user } = await signInWithGooglePopup()
+  }
 
-    const {email,password} = formFields;
-
-    const handleState = (event) => {
-        const {name,value} = event.target; 
-        setFormFields({
-            ...formFields,
-            [name]:value
-        })
-    }
-
-    const submitForm = async (event) =>{
-        event.preventDefault();
-        try{
-            const {user} = await signInAuthUserWithEmailAndPassword(email,password);
-        }catch(err){
-
-        }
-        
-    }
-
-    const signInWithPopup = async () => {
-        const {user} = await signInWithGooglePopup();
-    }
-
-   return(
+  return (
     <>
    <div className="sign-in-container">
    <h2>Already have an account?</h2>
@@ -53,12 +49,12 @@ const SignIn = () => {
        <FormInput label="Password" name="password" value={password} onChange={handleState}/>
          <div className="buttons-container">
            <Button type="submit">Sign In</Button>
-           <Button buttonType={BUTTON_TYPES.google} onClick={signInWithPopup}>Google Sign in</Button>      
+           <Button buttonType={BUTTON_TYPES.google} onClick={signInWithPopup}>Google Sign in</Button>
          </div>
        </form>
    </div>
    </>
-   )
+  )
 }
 
-export default SignIn;
+export default SignIn

@@ -1,63 +1,54 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from 'react'
 
-import "./sign-up.styles.scss";
-import { createAuthUserWithEmailAndPassword } from "../../../utils/firebase.util";
-import { createUser } from "../../../services/user-service";
+import './sign-up.styles.scss'
+import { createAuthUserWithEmailAndPassword } from '../../../utils/firebase.util'
+import { createUser } from '../../../services/user-service'
 import FormInput from '../../form-input/form-input.component'
-import Button from "../../button/button.component";
-import { UserContext } from "../../../context/user.context";
+import Button from '../../button/button.component'
+import { UserContext } from '../../../context/user.context'
 
 const SignUp = () => {
+  const defaultFormFields = {
+    displayName: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  }
 
-    const defaultFormFields = {
-        displayName:'',
-        email:'',
-        password:'',
-        confirmPassword:''
+  const [formFields, setFormFields] = useState(defaultFormFields)
+  const { displayName, email, password, confirmPassword } = formFields
+  const { setCurrentUser } = useContext(UserContext)
+
+  const handleState = (event) => {
+    const { name, value } = event.target
+    setFormFields({
+      ...formFields,
+      [name]: value
+    })
+  }
+
+  const submitForm = async (event) => {
+    event.preventDefault()
+    if (formFields.password !== formFields.confirmPassword) {
+      alert('Passwords do not match')
+      return
     }
 
-    const [formFields,setFormFields] = useState(defaultFormFields);
-    const {displayName,email,password,confirmPassword} = formFields;
-    const {setCurrentUser} = useContext(UserContext);
-
-    const handleState = (event) => {
-           const {name,value} = event.target;
-           setFormFields({
-            ...formFields,
-            [name]:value
-           })
+    try {
+      const { user } = await createAuthUserWithEmailAndPassword(formFields.email, formFields.password)
+      await createUser(user, { displayName: formFields.displayName })
+      setCurrentUser(user)
+    } catch (err) {
+      if (err.code === 'auth/email-already-in-use') {
+        alert('Email already exists')
+      }
+      if (err.code === 'auth/weak-password') {
+        alert('Password should be at least 6 characters')
+      }
     }
+  }
 
-    const submitForm = async (event) => {
-        event.preventDefault();
-       if(formFields.password !== formFields.confirmPassword) {
-        alert("Passwords do not match")
-        return;
-       }
-
-       try{
-          const {user} = await createAuthUserWithEmailAndPassword(formFields.email,formFields.password);
-          await createUser(user,{displayName:formFields.displayName})
-          setCurrentUser(user)
-
-       }
-       catch(err){
-        if(err.code === 'auth/email-already-in-use'){
-            alert("Email already exists")
-        }
-        if(err.code === 'auth/weak-password'){
-            alert("Password should be at least 6 characters")
-        }
-       }
-        
-    }
-
-
-   
-
-
-    return(
+  return (
         <>
        <div className="sign-up-container">
        <h2>Don't have an account</h2>
@@ -73,7 +64,7 @@ const SignUp = () => {
         </form>
        </div>
         </>
-    )
+  )
 }
 
-export default SignUp;
+export default SignUp

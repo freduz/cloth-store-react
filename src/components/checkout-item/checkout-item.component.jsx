@@ -1,15 +1,14 @@
-import { GetCartContext } from '../../context/cart.context';
+import { GetCartContext } from '../../context/cart.context'
 
-import './checkout-item.styles.scss';
+import './checkout-item.styles.scss'
 
 const CheckoutItem = ({ cartItem }) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+  const { name, imageUrl, price, quantity } = cartItem
 
-  const {addItemToCart, removeItemFromCart,clearCartItem } = GetCartContext();
+  const { addItemToCart, removeItemFromCart, clearCartItem } = GetCartContext()
 
- 
-  const addItemHandler = () => addItemToCart(cartItem);
-  const removeItemHandler = () => removeItemFromCart(cartItem);
+  const addItemHandler = () => addItemToCart(cartItem)
+  const removeItemHandler = () => removeItemFromCart(cartItem)
   const clearCartItemHandler = () => clearCartItem(cartItem)
 
   return (
@@ -32,7 +31,7 @@ const CheckoutItem = ({ cartItem }) => {
         &#10005;
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CheckoutItem;
+export default CheckoutItem

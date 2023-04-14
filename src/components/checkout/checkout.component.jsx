@@ -1,11 +1,10 @@
-import { GetCartContext } from '../../context/cart.context';
-import CheckoutItem from '../checkout-item/checkout-item.component';
+import { GetCartContext } from '../../context/cart.context'
+import CheckoutItem from '../checkout-item/checkout-item.component'
 
-
-import './checkout.styles.scss';
+import './checkout.styles.scss'
 
 const Checkout = () => {
-  const { cartItems, cartCount,cartTotal } = GetCartContext();
+  const { cartItems, cartCount, cartTotal } = GetCartContext()
 
   return (
     <div className='checkout-container'>
@@ -31,7 +30,7 @@ const Checkout = () => {
       ))}
       <div className='total'>TOTAL: ${cartTotal}</div>
     </div>
-  );
-};
+  )
+}
 
-export default Checkout;
+export default Checkout

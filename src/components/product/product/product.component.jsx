@@ -1,15 +1,14 @@
 import './product.styles.scss'
-import Button from "../../button/button.component";
-import {GetCartContext} from '../../../context/cart.context'
+import Button from '../../button/button.component'
+import { GetCartContext } from '../../../context/cart.context'
 
-const Product = ({product}) => {
-    const { name, price, imageUrl } = product;
-    const {addItemToCart} = GetCartContext();
+const Product = ({ product }) => {
+  const { name, price, imageUrl } = product
+  const { addItemToCart } = GetCartContext()
 
-    const addItemToBasket = () => addItemToCart(product)
+  const addItemToBasket = () => addItemToCart(product)
 
-
-    return (
+  return (
       <div className='product-card-container'>
         <img src={imageUrl} alt={`${name}`} />
         <div className='footer'>
@@ -18,7 +17,7 @@ const Product = ({product}) => {
         </div>
         <Button buttonType='inverted' onClick={addItemToBasket}>Add to card</Button>
       </div>
-    );
-  };
+  )
+}
 
 export default Product

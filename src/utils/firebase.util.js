@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth'
-import { getFirestore, doc, setDoc, getDoc, writeBatch, collection, query, getDocs } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, getDoc, collection, query, getDocs } from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBXPllqHq16LbXaJwTlJaXeuqxVZjAfn94',
@@ -13,6 +13,7 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
+// eslint-disable-next-line no-unused-vars
 const app = initializeApp(firebaseConfig)
 const provider = new GoogleAuthProvider()
 const auth = getAuth()

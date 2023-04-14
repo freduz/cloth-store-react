@@ -1,14 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-import Product from '../product/product/product.component';
+import { useNavigate } from 'react-router-dom'
+import Product from '../product/product/product.component'
 
-import './category-preview.styles.scss';
+import './category-preview.styles.scss'
 
 const CategoryPreview = ({ title, products }) => {
-
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const redirectPage = _ => {
-      navigate(`${title}`)
+    navigate(`${title}`)
   }
 
   return (
@@ -25,6 +24,6 @@ const CategoryPreview = ({ title, products }) => {
       </div>
     </div>
   )
-};
+}
 
-export default CategoryPreview;
+export default CategoryPreview

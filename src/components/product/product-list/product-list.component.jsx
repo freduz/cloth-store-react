@@ -1,24 +1,23 @@
-import { Fragment } from 'react';
-import {GetProductContext} from '../../../context/product.context'
+import { Fragment } from 'react'
+import { GetProductContext } from '../../../context/product.context'
 import Product from '../product/product.component'
-import CategoryPreview from '../../category-preview/category-preview.component';
+import CategoryPreview from '../../category-preview/category-preview.component'
 import './product-list.styles.scss'
 
 const ProductList = () => {
-
-    const {products} = GetProductContext();
-    return(
+  const { products } = GetProductContext()
+  return (
         <div>
             {
-               Object.keys(products).map((title) =>{
-                const productsData = products[title];
-                return (
+               Object.keys(products).map((title) => {
+                 const productsData = products[title]
+                 return (
                     <CategoryPreview key={title} title={title} products={productsData}/>
-                )
+                 )
                })
             }
         </div>
-    )
+  )
 }
 
-export default ProductList;
+export default ProductList

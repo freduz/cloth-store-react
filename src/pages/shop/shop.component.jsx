@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
-import './shop.styles.scss';
+import { Outlet } from 'react-router-dom'
+import './shop.styles.scss'
 
 const Shop = () => {
-    return ( 
+  return (
         <Outlet/>
-    );
+  )
 }
 
-export default Shop;
+export default Shop

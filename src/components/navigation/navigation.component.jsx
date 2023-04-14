@@ -1,25 +1,22 @@
-import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
+import { Fragment, useContext } from 'react'
+import { Link } from 'react-router-dom'
 
-import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
-import { UserContext } from '../../context/user.context';
+import { ReactComponent as CrwnLogo } from '../../assets/crown.svg'
+import { UserContext } from '../../context/user.context'
 
-import {LogoContainer, NavigationContainer, NavLink, NavLinks} from './navigation.styles';
-import { logoutUser } from '../../utils/firebase.util';
-import CartIcon from '../cart-icon/cart-icon.component';
+import { LogoContainer, NavigationContainer, NavLink, NavLinks } from './navigation.styles'
+import { logoutUser } from '../../utils/firebase.util'
+import CartIcon from '../cart-icon/cart-icon.component'
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
-import {GetCartContext} from '../../context/cart.context'
+import { GetCartContext } from '../../context/cart.context'
 
 const Navigation = () => {
-
-  const {currentUser,setCurrentUser} = useContext(UserContext);
-  const {isCartOpen} = GetCartContext();
+  const { currentUser, setCurrentUser } = useContext(UserContext)
+  const { isCartOpen } = GetCartContext()
 
   const logout = async () => {
-       await logoutUser()
-       setCurrentUser(null)
-      
+    await logoutUser()
+    setCurrentUser(null)
   }
 
   return (
@@ -33,25 +30,27 @@ const Navigation = () => {
             SHOP
           </NavLink>
           {
-            (currentUser) ? (
-              <NavLink  onClick={logout}>
+            (currentUser)
+              ? (
+              <NavLink onClick={logout}>
               SIGN OUT
             </NavLink>
-            ) : (
+                )
+              : (
               <NavLink to='/auth'>
               SIGN IN
             </NavLink>
-            )
-          } 
+                )
+          }
           <CartIcon/>
         </NavLinks>
           {
-           isCartOpen &&  <CartDropdown/>
+           isCartOpen && <CartDropdown/>
           }
-       
+
       </NavigationContainer>
     </Fragment>
-  );
-};
+  )
+}
 
-export default Navigation;
+export default Navigation
