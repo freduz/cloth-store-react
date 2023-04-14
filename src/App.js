@@ -1,11 +1,11 @@
-import MainRoute from "./routes/Main";
+import MainRoute from './routes/Main'
 
 const App = () => {
   return (
     <>
     <MainRoute/>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
