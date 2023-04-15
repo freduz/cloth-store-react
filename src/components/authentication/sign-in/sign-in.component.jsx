@@ -8,7 +8,6 @@ import { signInAuthUserWithEmailAndPassword, signInWithGooglePopup } from '../..
 import { createUser } from '../../../services/user-service'
 
 const SignIn = () => {
-  const { setCurrentUser } = useContext(UserContext)
   const defaultFormFields = {
     email: '',
     password: ''
@@ -29,14 +28,14 @@ const SignIn = () => {
   const submitForm = async (event) => {
     event.preventDefault()
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+      await signInAuthUserWithEmailAndPassword(email, password)
     } catch (err) {
 
     }
   }
 
   const signInWithPopup = async () => {
-    const { user } = await signInWithGooglePopup()
+    await signInWithGooglePopup()
   }
 
   return (
