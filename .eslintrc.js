@@ -21,6 +21,9 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'no-unused-vars': 'off',
     'react/prop-types': 'off',
-    'react/no-unescaped-entities': 'off'
+    'react/no-unescaped-entities': 'off',
+    'keyword-spacing': 'off',
+    'key-spacing': 'off',
+    'padded-blocks': 'off'
   }
 }
